@@ -13,4 +13,32 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { blog };
+const project = defineCollection({
+	type: 'content',
+
+	schema: z.object({
+		title: z.string(),
+		summary: z.string(),
+		heroImage: z.string().optional(),
+		thumbnail: z.string(),
+		orderIdx: z.number(),
+		url: z.string().optional(),
+		isExternal: z.boolean().optional(),
+		hasContent: z.boolean().optional()
+	})
+})
+
+const experience = defineCollection({
+	type: 'content',
+
+	schema: z.object({
+		title: z.string(),
+		startDate: z.string(),
+		endDate: z.string().optional(),
+		logo: z.string(),
+		summary: z.string(),
+		orderIdx: z.number(),
+	})
+})
+
+export const collections = { blog, project, experience };

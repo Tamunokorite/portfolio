@@ -2,7 +2,18 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { skills } from '../utils/skills';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const projects = (await getCollection('project')).sort(
+	(a, b) => a.data.orderIdx - b.data.orderIdx
+);
+
+const experience = (await getCollection('experience')).sort(
+	(a, b) => a.data.orderIdx - b.data.orderIdx
+);
+
 ---
 
 <!doctype html>
@@ -10,41 +21,327 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
+	<body class="antialiased">
+			<div class="hero-container bg-white px-2 py-16 sm:px-10 bg-blend-screen">
+				<section id="hero" class="hero relative bg-[#121212] bg-blend-screen border-2 border-[#787878] mx-2 md:mx-0 flex items-center min-h-[80vh] rounded-[60px] p-8 py-24 md:p-12 overflow-hidden backdrop-blur-lg shadow-custom-inset">
+					<div class="absolute inset-0 z-50 h-48">
+						<div class="hidden lg:inline-block absolute top-52 left-40">
+							<svg class="group" width="400" viewBox="0 0 661 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M659.723 66.6382C660.318 71.6109 658.738 76.8041 655.028 82.1756C651.314 87.554 645.5 93.0573 637.744 98.5969C622.234 109.675 599.133 120.777 570.115 131.264C512.094 152.232 430.628 170.666 339.476 181.576C248.325 192.485 164.809 193.798 103.479 187.114C72.8056 183.772 47.7376 178.435 30.0509 171.33C21.207 167.777 14.2581 163.801 9.37969 159.451C4.50753 155.107 1.74643 150.433 1.15126 145.46C0.556096 140.488 2.13628 135.295 5.84558 129.923C9.55965 124.545 15.3741 119.041 23.1297 113.502C38.64 102.423 61.7405 91.3211 90.7586 80.8342C148.78 59.8661 230.246 41.4324 321.397 30.5228C412.549 19.6132 496.064 18.3008 557.395 24.9841C588.068 28.3267 613.136 33.6636 630.823 40.7689C639.667 44.3218 646.616 48.2975 651.494 52.6475C656.366 56.9919 659.127 61.6655 659.723 66.6382Z" stroke="url(#paint0_linear_164_679)" stroke-width="2"/>
+								<path class="group-hover:animate-pulse" d="M419.639 0.0986328L424.365 13.237L437.139 18.0986L424.365 22.9603L419.639 36.0986L414.912 22.9603L402.139 18.0986L414.912 13.237L419.639 0.0986328Z" fill="#0074FF"/>
+								<path class="group-hover:animate-pulse" d="M157.639 165.099L162.365 178.237L175.139 183.099L162.365 187.96L157.639 201.099L152.912 187.96L140.139 183.099L152.912 178.237L157.639 165.099Z" fill="#0074FF"/>
+								<defs>
+								<linearGradient id="paint0_linear_164_679" x1="674.296" y1="71.0187" x2="-48.7184" y2="139.032" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#4269F6"/>
+								<stop offset="1" stop-color="#D5F60C" stop-opacity="0"/>
+								</linearGradient>
+								</defs>
+							</svg>
+						</div>
+					</div>
+		
+					<div class="relative mx-2 md:mx-24 z-10">
+						<div class="grid lg:grid-cols-[2fr,1fr] gap-12 md:gap-48 items-center">
+							<div class="space-y-8 order-2 lg:order-1">
+								<div class="space-y-4">
+									<h1 class="space-y-4">
+										<span class="text-3xl md:text-6xl text-gray-400 flex items-center gap-2">
+											Hi 
+											<span class="animate-waving-hand md:mr-2">👋🏽</span>
+											I'm
+										</span>
+										<span class="text-6xl uppercase md:text-8xl font-bold text-white block z-1">
+											Okorite
+										</span>
+									</h1>
+									<p class="text-gray-400 text-md md:text-xl max-w-2xl leading-relaxed">
+										I&apos;m a software engineer with 1+ years of experience building web and mobile apps. I&apos;m passionate about solving problems and delivering great experiences.through clean, efficient code
+									</p>
+								</div>
+		
+								<div class="flex gap-4">
+									<a href="https://x.com/ah3mba" target="_blank" class="rounded-full text-gray-400 bg-[#0067F2] hover:opacity-30 duration-200 p-3 flex items-center hover:text-white">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M13.9763 10.1625L22.7186 0H20.6468L13.056 8.82375L6.993 0H0L9.16838 13.3433L0 24H2.07188L10.0883 14.6818L16.491 24H23.484L13.9757 10.1625H13.9763ZM11.1386 13.4606L10.2096 12.132L2.81831 1.55962H6.00056L11.9651 10.092L12.894 11.4206L20.6477 22.5112H17.4658L11.1386 13.4612V13.4606Z" fill="#FFF8F5"/>
+										</svg>											
+										<span class="sr-only">X (Formerly known as Twitter)</span>
+									</a>
+									<a href="https://github.com/Tamunokorite" target="_blank" class="rounded-full text-gray-400 bg-[#0067F2] hover:opacity-30 duration-200 p-3 flex items-center hover:text-white">
+										<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12.484 0C9.30141 0 6.24916 1.26428 3.99873 3.51472C1.74829 5.76515 0.484009 8.8174 0.484009 12C0.484009 15.1826 1.74829 18.2348 3.99873 20.4853C6.24916 22.7357 9.30141 24 12.484 24C15.6666 24 18.7189 22.7357 20.9693 20.4853C23.2197 18.2348 24.484 15.1826 24.484 12C24.484 8.8174 23.2197 5.76515 20.9693 3.51472C18.7189 1.26428 15.6666 0 12.484 0ZM15.647 21.783H15.554C15.4842 21.7869 15.4142 21.7766 15.3485 21.7525C15.2828 21.7284 15.2228 21.6912 15.172 21.643C15.1251 21.5934 15.0886 21.535 15.0645 21.4711C15.0405 21.4072 15.0294 21.3392 15.032 21.271V19.865C15.038 19.398 15.042 18.925 15.042 18.449C15.0404 18.1009 14.9895 17.7548 14.891 17.421C14.7977 17.0835 14.6096 16.7799 14.349 16.546C15.046 16.4787 15.7312 16.3204 16.387 16.075C16.9402 15.8646 17.4406 15.5356 17.853 15.111C18.26 14.684 18.563 14.168 18.738 13.605C18.9509 12.9155 19.0522 12.1965 19.038 11.475C19.0419 10.9713 18.9538 10.4711 18.778 9.999C18.5994 9.5232 18.3293 9.08699 17.983 8.715C18.0578 8.52739 18.1121 8.33226 18.145 8.133C18.178 7.933 18.195 7.731 18.195 7.529C18.195 7.269 18.165 7.009 18.105 6.756C18.0505 6.4965 17.9766 6.24146 17.884 5.993C17.8487 5.97921 17.811 5.97242 17.773 5.973H17.663C17.433 5.975 17.207 6.013 16.989 6.084C16.7489 6.15409 16.514 6.24097 16.286 6.344C16.0593 6.44561 15.8386 6.56013 15.625 6.687C15.41 6.814 15.22 6.936 15.052 7.049C13.3697 6.58013 11.5913 6.58013 9.90901 7.049C9.7214 6.92357 9.53067 6.80287 9.33701 6.687C9.12037 6.55907 8.89593 6.44485 8.66501 6.345C8.43767 6.23856 8.20185 6.15126 7.96001 6.084C7.74631 6.0134 7.52305 5.97597 7.29801 5.973H7.18801C7.15039 5.97247 7.11303 5.97926 7.07801 5.993C6.98407 6.2418 6.90722 6.49673 6.84801 6.756C6.79401 7.01 6.76801 7.269 6.76701 7.529C6.76701 7.731 6.78401 7.933 6.81801 8.133C6.85101 8.332 6.90401 8.527 6.97801 8.715C6.6326 9.08748 6.36353 9.52404 6.18601 10C6.00929 10.4719 5.92016 10.9721 5.92301 11.476C5.90902 12.1936 6.00755 12.9089 6.21501 13.596C6.39601 14.159 6.69801 14.676 7.09901 15.112C7.51401 15.534 8.01401 15.862 8.56501 16.076C9.21801 16.326 9.90201 16.486 10.598 16.552C10.4037 16.7281 10.2495 16.944 10.146 17.185C10.0475 17.4233 9.98031 17.6734 9.94601 17.929C9.57909 18.1047 9.17781 18.1969 8.77101 18.199C8.39322 18.2141 8.02036 18.1091 7.70601 17.899C7.40445 17.6755 7.14907 17.3957 6.95401 17.075C6.86671 16.9403 6.76908 16.8126 6.66201 16.693C6.54905 16.5672 6.4245 16.4524 6.29001 16.35C6.15745 16.2509 6.01214 16.1702 5.85801 16.11C5.70636 16.0435 5.54259 16.0091 5.37701 16.009C5.33701 16.01 5.29701 16.014 5.25701 16.019C5.20238 16.0188 5.14795 16.0255 5.09501 16.039C5.04848 16.0512 5.00447 16.0715 4.96501 16.099C4.94707 16.1089 4.93207 16.1233 4.92153 16.1409C4.91099 16.1585 4.90529 16.1785 4.90501 16.199C4.90921 16.2471 4.92392 16.2937 4.94811 16.3356C4.97231 16.3774 5.00538 16.4134 5.04501 16.441C5.13801 16.515 5.21501 16.572 5.27701 16.612L5.30701 16.633C5.44001 16.736 5.56801 16.847 5.68901 16.966C5.80101 17.064 5.90201 17.175 5.98901 17.296C6.07901 17.415 6.15701 17.542 6.22001 17.677C6.29301 17.811 6.37001 17.965 6.45101 18.14C6.63901 18.614 6.97301 19.015 7.40501 19.285C7.85801 19.528 8.36601 19.649 8.88101 19.636C9.05501 19.636 9.23001 19.626 9.40301 19.606C9.57501 19.578 9.74601 19.549 9.91801 19.515V21.258C9.92112 21.3283 9.90937 21.3984 9.88352 21.4638C9.85767 21.5293 9.81831 21.5885 9.768 21.6377C9.7177 21.6869 9.65758 21.7249 9.59159 21.7492C9.52559 21.7736 9.4552 21.7837 9.38501 21.779H9.32301C6.99105 21.0257 5.00467 19.4645 3.72158 17.3766C2.43848 15.2887 1.94297 12.8114 2.32429 10.3906C2.7056 7.9698 3.93868 5.7647 5.80148 4.17236C7.66428 2.58002 10.0344 1.70507 12.485 1.70507C14.9356 1.70507 17.3057 2.58002 19.1685 4.17236C21.0313 5.7647 22.2644 7.9698 22.6457 10.3906C23.027 12.8114 22.5315 15.2887 21.2484 17.3766C19.9653 19.4645 17.979 21.0257 15.647 21.779V21.783Z" fill="#FFF8F5"/>
+										</svg>											
+										<span class="sr-only">Github</span>
+									</a>
+									<a href="https://www.linkedin.com/in/tamunokorite-briggs-731551211/" target="_blank" class="rounded-full text-gray-400 bg-[#0067F2] hover:opacity-30 duration-200 p-3 flex items-center hover:text-white">
+										<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M4.93994 2.00002C4.93968 2.53046 4.72871 3.03906 4.35345 3.41394C3.97819 3.78883 3.46937 3.99929 2.93894 3.99902C2.40851 3.99876 1.89991 3.78779 1.52502 3.41253C1.15014 3.03727 0.939676 2.52846 0.939942 1.99802C0.940207 1.46759 1.15117 0.958988 1.52644 0.584103C1.9017 0.209218 2.41051 -0.00124153 2.94094 -0.000976312C3.47137 -0.000711096 3.97998 0.210257 4.35486 0.585517C4.72975 0.960777 4.94021 1.46959 4.93994 2.00002ZM4.99994 5.48002H0.999942V18H4.99994V5.48002ZM11.3199 5.48002H7.33994V18H11.2799V11.43C11.2799 7.77002 16.0499 7.43002 16.0499 11.43V18H19.9999V10.07C19.9999 3.90002 12.9399 4.13002 11.2799 7.16002L11.3199 5.48002Z" fill="white"/>
+										</svg>										
+										<span class="sr-only">LinkedIn</span>
+									</a>
+								</div>
+							</div>
+		
+							<div class="relative order-1 lg:order-2">
+								<div class="relative max-w-[300px] mx-auto flex flex-wrap items-center lg:float-right lg:ml-16">
+									<img
+										src="/selfie.jpeg"
+										alt="Briggs avatar"
+										width={300}
+										height={300}
+										class="rounded-full object-cover h-40 w-40 md:h-52 md:w-52 lg:h-56 lg:w-56 mx-auto aspect-square z-0"
+									/>
+									<div class="flex justify-center w-full gap-4 lg:gap-0 mt-4 lg:mt-0">
+										<div class="lg:absolute lg:bottom-auto lg:-top-8 lg:-right-24 bg-[#2C3A5C] lg:bg-[#23252A] text-white flex items-center p-2 md:p-3 gap-2 rounded-xl lg:rounded-3xl shadow-custom-1 lg:transition-transform lg:hover:scale-150 lg:hover:-translate-x-8 z-20">
+											<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<circle cx="16" cy="16" r="16" fill="#4269F6"/>
+												<g clip-path="url(#clip0_187_3448)">
+												<path d="M23.4999 21.8333C23.7123 21.8335 23.9166 21.9149 24.071 22.0607C24.2255 22.2065 24.3184 22.4058 24.3309 22.6178C24.3433 22.8298 24.2743 23.0386 24.138 23.2015C24.0017 23.3644 23.8083 23.4691 23.5974 23.4941L23.4999 23.5H8.49989C8.28749 23.4997 8.0832 23.4184 7.92875 23.2726C7.7743 23.1268 7.68136 22.9275 7.66891 22.7155C7.65647 22.5034 7.72545 22.2947 7.86178 22.1318C7.9981 21.9689 8.19148 21.8642 8.40239 21.8391L8.49989 21.8333H23.4999ZM21.8332 9.33331C22.2537 9.33318 22.6587 9.49199 22.967 9.77789C23.2753 10.0638 23.4642 10.4557 23.4957 10.875L23.4999 11V19.3333C23.5 19.7538 23.3412 20.1588 23.0553 20.4671C22.7694 20.7754 22.3775 20.9643 21.9582 20.9958L21.8332 21H10.1666C9.74608 21.0001 9.34109 20.8413 9.03277 20.5554C8.72445 20.2695 8.53559 19.8776 8.50406 19.4583L8.49989 19.3333V11C8.49976 10.5795 8.65856 10.1745 8.94447 9.86619C9.23038 9.55787 9.62226 9.36902 10.0416 9.33748L10.1666 9.33331H21.8332Z" fill="white"/>
+												</g>
+												<defs>
+												<clipPath id="clip0_187_3448">
+												<rect width="20" height="20" fill="white" transform="translate(6 6)"/>
+												</clipPath>
+												</defs>
+											</svg>											
+											<p class="text-sm lg:text-xl">Software Engineer</p>
+										</div>
+										<div class="hidden lg:absolute lg:-bottom-4 lg:-left-4 bg-[#2C3A5C] lg:bg-[#23252A] text-white lg:flex p-2 md:p-3 cursor-default items-center gap-2 rounded-xl lg:rounded-3xl shadow-custom-1 lg:transition-transform lg:hover:scale-150 lg:hover:translate-x-8 z-20">
+											<span class="text-white font-bold text-sm lg:text-md">1+</span>
+											<span class="text-gray-400 capitalize text-sm lg:text-md">years of<br />experience</span>
+										</div>
+									</div>
+								</div>
+								<div class="hidden lg:block absolute top-0 left-16 lg:transition-transform lg:hover:animate-spin z-10">
+									<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M34 0L43.1831 24.8169L68 34L43.1831 43.1831L34 68L24.8169 43.1831L0 34L24.8169 24.8169L34 0Z" fill="#0074FF"/>
+									</svg>								
+								</div>
+								<div class="hidden lg:block absolute bottom-0 right-0 lg:hover:transition-transform lg:hover:animate-spin z-10">
+									<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M34 0L43.1831 24.8169L68 34L43.1831 43.1831L34 68L24.8169 43.1831L0 34L24.8169 24.8169L34 0Z" fill="#0074FF"/>
+									</svg>	
+								</div>
+							</div>
+						</div>
+						<div class="hidden lg:block">
+							<div class="absolute right-80 bottom-0">
+								<svg width="234" height="80" viewBox="0 0 234 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M122.5 37.7609L122.144 37.4094L122.5 37.7609ZM154.5 77.2607L154.602 77.7503L154.5 77.2607ZM231.986 5.64172C231.92 5.37351 231.649 5.20938 231.381 5.27512L227.01 6.34635C226.742 6.41209 226.578 6.6828 226.644 6.951C226.709 7.21921 226.98 7.38334 227.248 7.3176L231.133 6.36539L232.086 10.2504C232.151 10.5186 232.422 10.6827 232.69 10.617C232.958 10.5513 233.123 10.2806 233.057 10.0124L231.986 5.64172ZM0.760964 38.2001C13.9715 45.3906 35.9089 54.016 58.8204 56.5329C81.7281 59.0494 105.703 55.4664 122.856 38.1124L122.144 37.4094C105.297 54.4554 81.6886 58.0391 58.9296 55.5389C36.1744 53.0391 14.3618 44.4645 1.23904 37.3217L0.760964 38.2001ZM122.856 38.1124C133.506 27.3371 137.124 18.769 136.214 12.4742C135.295 6.12125 129.82 2.33878 122.969 1.02946C116.106 -0.282173 107.713 0.841502 100.619 4.41908C93.5167 8.00052 87.6704 14.0679 86.0091 22.666L86.9909 22.8557C88.5796 14.6335 94.1708 8.79062 101.069 5.31197C107.975 1.82948 116.144 0.743204 122.781 2.01168C129.43 3.28246 134.393 6.87016 135.224 12.6173C136.064 18.4226 132.744 26.6847 122.144 37.4094L122.856 38.1124ZM86.0091 22.666C82.7175 39.7015 90.1955 55.5028 103.312 66.0163C116.427 76.5283 135.204 81.781 154.602 77.7503L154.398 76.7712C135.296 80.7405 116.823 75.5637 103.938 65.236C91.0545 54.9097 83.7825 39.4612 86.9909 22.8557L86.0091 22.666ZM154.602 77.7503C170.16 74.5175 186.291 61.8355 200.099 47.3938C213.924 32.9342 225.495 16.6291 231.928 6.01997L231.072 5.50152C224.671 16.0591 213.143 32.304 199.376 46.7027C185.592 61.1194 169.64 73.604 154.398 76.7712L154.602 77.7503Z" fill="#8EA5FA"/>
+								</svg>									
+							</div>
+						</div>
+					</div>	
+				</section>
+			</div>
+			<main id="main-content" class="px-10 space-y-16 py-16 bg-blend-difference bg-background">
+				<section id="about-me" class="relative border bg-custom-black border-custom-white rounded-3xl overflow-hidden p-6 md:p-12">
+					<div class="mx-auto">
+						<div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center min-h-[70vh]">
+							<div class="relative aspect-square max-w-md mx-auto md:max-w-none">
+								<img
+									src="/profile-image.jpeg"
+									alt="Tamunokorite Briggs"
+									width={600}
+									height={600}
+									class="rounded-2xl h-full object-cover aspect-square"
+								/>
+							</div>
+		
+							<div class="space-y-6">
+								<h2 class="text-3xl text-white">
+									About <span class="inline-block font-bold">Me</span>
+								</h2>
+		
+								<div class="space-y-4 text-md text-gray-400 leading-relaxed text-justify">
+									<p>
+										I'm a first class graduate of software engineering with experience as a full stack engineer. 
+										I am very enthusiastic about bringing the technical and
+										visual aspects of digital products to life. User experience, pixel perfect
+										design, and writing clear, readable, highly performant code matters to me.
+									</p>
+		
+									<p>
+										I began my journey as a self-taught developer in secondary school and since then, I've continued
+										to grow and evolve as a developer, taking on new challenges and learning the
+										latest technologies along the way. Now, I'm building web applications
+										using modern technologies such as Next.js, TypeScript, TailwindCSS,
+										Supabase and much more.
+									</p>
+		
+									<p>
+										When I'm not coding, you can find me on twitter where I spend most of my free time. You can follow me on <a href="https://x.com/ah3mba" target="_blank" class="underline">Twitter</a> where I share my thoughts on tech
+										and other topics, or you can follow me on <a href="https://github.com/Tamunokorite" target="_blank" class="underline">GitHub</a>.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="skills" class="w-full space-y-8 pb-8">
+					<h2 class="text-center text-3xl">My <span class="font-bold">Skills</span></h2>
+					<div class="flex flex-wrap gap-8 justify-center">
+						{skills.map((skill) => (
+							<div class="flex flex-col items-center justify-center bg-white h-20 w-20 lg:w-56 lg:h-56 gap-3 lg:gap-8 rounded-2xl">
+								<div class="h-4 w-4 lg:h-16 lg:w-16 flex justify-center items-center" set:html={skill.icon}></div>
+								<p class="text-xs lg:text-base text-custom-grey">{skill.name}</p>
+							</div>
+						))}
+					</div>
+				</section>
+
+				<section id="projects">
+					<h2 class="text-center text-3xl">My <span class="font-bold">Projects</span></h2>
+					<div class="px-4 py-24 sm:px-6 lg:px-8 space-y-16">
+						{
+							projects.map((project) => (
+								<article 
+									class={
+										`grid gap-8 lg:grid-cols-2 lg:gap-16 items-center`
+									}
+								>
+									<div class={`grid grid-cols-1 ${project.data.orderIdx % 2 == 0 && 'lg:order-2'}`}>
+										<img
+											src={project.data.thumbnail} 
+											alt="Project interface preview"
+											width={223}
+											height={223}
+											class="rounded-lg shadow-2xl w-full object-fill h-64 lg:h-96"
+										/>
+									</div>
+									<hr class="md:hidden h-[2px] bg-[#8599B6]" />
+									<div class="space-y-3 flex flex-col justify-center h-full">
+										<div class="flex items-center gap-4">
+											<span class="text-5xl font-bold text-white">{project.data.orderIdx.toString().padStart(2, '0')}</span>
+										</div>
+										<h2 class="text-3xl font-bold text-white sm:text-4xl">
+											{project.data.title}
+										</h2>
+										<p class="text-sm text-gray-400 leading-relaxed">
+											{project.data.summary}
+										</p>
+
+										<a href={project.data.url} target="_blank" class="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.8334 9.16671L17.6667 2.33337" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M18.3334 5.66663V1.66663H14.3334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M9.16663 1.66663H7.49996C3.33329 1.66663 1.66663 3.33329 1.66663 7.49996V12.5C1.66663 16.6666 3.33329 18.3333 7.49996 18.3333H12.5C16.6666 18.3333 18.3333 16.6666 18.3333 12.5V10.8333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</section>
+
+				<section id="experience">
+					<h2 class="text-center text-3xl">My <span class="font-bold">Experience</span></h2>
+					<div class="py-24 space-y-16">
+						{
+							experience.map((experience) => (
+								<article 
+									class={
+										`grid lg:grid-cols-1 lg:gap-4 items-center bg-[#8080808C] border border-[#71717A] rounded-lg p-3 lg:p-6`
+									}
+								>
+									<div class='flex flex-col md:flex-row md:items-center md:justify-between'>
+										<div class="flex flex-col md:flex-row md:items-center">
+											<div class="h-16 w-16 flex justify-center items-center">
+												<img
+													src={experience.data.logo} 
+													alt="Project interface preview"
+													width={50}
+													height={50}
+													class="object-cover"
+												/>
+											</div>
+											<h2 class="text-xl font-semibold text-white">
+												{experience.data.title}
+											</h2>
+										</div>
+										<p class="lg:pr-3 text-sm sora font-light">{experience.data.startDate} - {experience.data.endDate || 'Present'}</p>
+									</div>
+									<div>
+										<p class="text-[#D4D4D8] font-normal text-justify">{experience.data.summary}</p>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</section>
+
+				<section id="others" class="bg-custom-black rounded-lg p-3 lg:p-6 border border-[#3B3B3B] space-y-8 md:space-y-16">
+					<div id="volunteering" class="space-y-4">
+						<h2 class="font-extrabold uppercase text-xl">Volunteering</h2>
+						<article class="space-y-2">
+							<div class="flex flex-col md:flex-row md:justify-between">
+								<h4 class="font-semibold text-lg">Lead — Google Developer Student Clubs, Nile University of Nigeria</h4>
+								<p class="text-sm font-light">Aug 2021 - Aug 2022</p>
+							</div>
+							<p class="text-sm font-medium">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores omnis porro, odio natus vel voluptatum deleniti. Similique numquam, nulla vero porro, nesciunt repudiandae neque fugit, fugiat omnis in ad maiores!
+							</p>
+						</article>
+					</div>
+					<div id="awards">
+						<h2 class="font-extrabold uppercase text-xl">Awards</h2>
+						<article class="space-y-2">
+							<div class="flex flex-col md:flex-row md:justify-between">
+								<h4 class="font-semibold text-lg">Lead — Google Developer Student Clubs, Nile University of Nigeria</h4>
+								<p class="text-sm font-light">Aug 2021 - Aug 2022</p>
+							</div>
+							<p class="text-sm font-medium">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores omnis porro, odio natus vel voluptatum deleniti. Similique numquam, nulla vero porro, nesciunt repudiandae neque fugit, fugiat omnis in ad maiores!
+							</p>
+						</article>
+					</div>
+				</section>
+			</main>
+		</div>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	@keyframes waving-hand {
+		0% { transform: rotate(0deg); }
+		10% { transform: rotate(14deg); }
+		20% { transform: rotate(-8deg); }
+		30% { transform: rotate(14deg); }
+		40% { transform: rotate(-4deg); }
+		50% { transform: rotate(10deg); }
+		60% { transform: rotate(0deg); }
+		100% { transform: rotate(0deg); }
+	}
+
+  /* Spin animation */
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Revolution animation */
+	@keyframes revolve {
+		from {
+			transform: rotate(0deg) translateX(100px) rotate(0deg); /* Adjust radius */
+		}
+		to {
+			transform: rotate(360deg) translateX(100px) rotate(-360deg); /* Maintain spin */
+		}
+	}
+
+	.animate-revolve {
+    transform-origin: -1000px -300px; /* Adjust for revolution radius */
+  	animation: spin 2s linear infinite, revolve 5s linear infinite;
+  }
+
+	.animate-waving-hand {
+		animation: waving-hand 2.5s infinite;
+		display: inline-block;
+		transform-origin: 70% 70%;
+	}</style>
