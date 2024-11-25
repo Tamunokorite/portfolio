@@ -152,7 +152,7 @@ const experience = (await getCollection('experience')).sort(
 									About <span class="inline-block font-bold">Me</span>
 								</h2>
 		
-								<div class="space-y-4 text-md text-gray-400 leading-relaxed text-justify">
+								<div class="space-y-4 text-md text-gray-400 leading-relaxed lg:text-justify">
 									<p>
 										I'm a first class graduate of software engineering with experience as a full stack engineer. 
 										I am very enthusiastic about bringing the technical and
@@ -263,7 +263,7 @@ const experience = (await getCollection('experience')).sort(
 										<p class="lg:pr-3 text-sm sora font-light">{experience.data.startDate} - {experience.data.endDate || 'Present'}</p>
 									</div>
 									<div>
-										<p class="text-[#D4D4D8] font-normal text-justify">{experience.data.summary}</p>
+										<p class="text-[#D4D4D8] font-normal lg:text-justify">{experience.data.summary}</p>
 									</div>
 								</article>
 							))
